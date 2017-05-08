@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var sockIO = require('socket.io')();
+var push = require( 'pushover-notifications' );
+
+require('dotenv').config()
 
 var index = require('./routes/index');
 
@@ -18,10 +21,38 @@ app.sockIO = sockIO;
 
 // User connects to website
 sockIO.on('connection', function (socket) {
-  console.log('user connected');
+  console.log('user connected: ' + socket.id);
   socket.on('disconnect', function(){
-    console.log('user exit');
+    console.log('user exit: ' + socket.id);
   });
+  socket.on('reconnection', function(){
+    console.log('user reconnected: ' + socket.id);
+  });
+});
+
+var p = new push( {
+  user: process.env['PUSHOVER_API_KEY'],
+  token: process.env['PUSHOVER_USER_KEY'],
+  // httpOptions: {
+  //        proxy: process.env['http_proxy'],
+  //},
+  // onerror: function(error) {},
+  // update_sounds: true // update the list of sounds every day - will
+  // prevent app from exiting.
+});
+
+var msg = {
+  // These values correspond to the parameters detailed on https://pushover.net/api
+  // 'message' is required. All other values are optional.
+  message: 'omg node test'
+};
+
+p.send( msg, function( err, result ) {
+  if ( err ) {
+    throw err;
+  }
+
+  console.log( result );
 });
 
 // view engine setup
