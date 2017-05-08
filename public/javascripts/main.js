@@ -1,3 +1,8 @@
-/**
- * Created by Timo on 08/05/2017.
- */
+(function () {
+  /* global io */
+  // Check if socket is available
+  if (document.getElementById('socketScript')) {
+    var socket = io();
+    console.log(socket);
+  }
+})();

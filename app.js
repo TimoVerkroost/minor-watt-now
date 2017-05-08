@@ -3,10 +3,26 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var compression = require('compression');
+var sockIO = require('socket.io')();
 
 var index = require('./routes/index');
 
 var app = express();
+
+// Gzip compression added
+app.use(compression());
+
+// Init socket.io
+app.sockIO = sockIO;
+
+// User connects to website
+sockIO.on('connection', function (socket) {
+  console.log('user connected');
+  socket.on('disconnect', function(){
+    console.log('user exit');
+  });
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
