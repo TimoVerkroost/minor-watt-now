@@ -5,13 +5,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var sockIO = require('socket.io')();
-var push = require( 'pushover-notifications' );
 
-require('dotenv').config()
+require('dotenv').config();
 
 var index = require('./routes/index');
 
 var app = express();
+var pushMessages = require('./push-messages');
 
 // Gzip compression added
 app.use(compression());
@@ -25,34 +25,12 @@ sockIO.on('connection', function (socket) {
   socket.on('disconnect', function(){
     console.log('user exit: ' + socket.id);
   });
-  socket.on('reconnection', function(){
-    console.log('user reconnected: ' + socket.id);
-  });
 });
 
-var p = new push( {
-  user: process.env['PUSHOVER_API_KEY'],
-  token: process.env['PUSHOVER_USER_KEY'],
-  // httpOptions: {
-  //        proxy: process.env['http_proxy'],
-  //},
-  // onerror: function(error) {},
-  // update_sounds: true // update the list of sounds every day - will
-  // prevent app from exiting.
-});
-
-var msg = {
-  // These values correspond to the parameters detailed on https://pushover.net/api
-  // 'message' is required. All other values are optional.
-  message: 'omg node test'
-};
-
-p.send( msg, function( err, result ) {
-  if ( err ) {
-    throw err;
-  }
-
-  console.log( result );
+app.use('/message/:generator/:description', function (req, res, next) {
+  res.send(req.params);
+  pushMessages(req.params.generator, req.params.description);
+  //sockIO.emit('push_message', req.params.generator, req.params.description);
 });
 
 // view engine setup
