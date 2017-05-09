@@ -6,16 +6,11 @@ function pushMessages (title, message, priority){
   const p = new push( {
     token: process.env.PUSHOVER_API_KEY
   });
-
-  // const users = [
-  //   process.env.PUSHOVER_USER_KEY,
-  //   process.env.PUSHOVER_USER_KEY_DIEGO,
-  //   process.env.PUSHOVER_USER_KEY_COLIN
-  // ];
-
   // User who receive the messages (min. 1 required)
   const users = [
-    process.env.PUSHOVER_USER_KEY
+    process.env.PUSHOVER_USER_KEY,
+    //process.env.PUSHOVER_USER_KEY_DIEGO,
+    //process.env.PUSHOVER_USER_KEY_COLIN
   ];
   // All supported notification sounds
   const sounds = {
@@ -42,6 +37,7 @@ function pushMessages (title, message, priority){
     updown:       'updown',
     none:         'none'
   };
+  // Notification sound based on priority number
   let notificationSound;
   switch (priority) {
     // Emergency Priority
