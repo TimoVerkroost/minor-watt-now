@@ -4,11 +4,11 @@
             labels: [],
             datasets: [{
                 label: "VA, generator 1",
-                backgroundColor: "rgba(135, 211, 124, .3)",
-                borderColor: "rgba(75,192,192,1)",
-                pointBorderColor: "rgba(75,192,192,1)",
+                backgroundColor: "rgba(241, 196, 15,.3)",
+                borderColor: "rgba(241, 196, 15,1.0)",
+                pointBorderColor: "rgba(255,255,255,1)",
                 pointBackgroundColor: "#fff",
-                pointRadius: 3,
+                pointRadius: 1,
                 pointHitRadius: 10,
                 data: []
             }]
@@ -17,11 +17,11 @@
             labels: [],
             datasets: [{
                 label: "Temperture, generator 1",
-                backgroundColor: "rgba(135, 211, 124, .3)",
-                borderColor: "rgba(75,192,192,1)",
-                pointBorderColor: "rgba(75,192,192,1)",
+                backgroundColor: "rgba(231, 76, 60,.3)",
+                borderColor: "rgba(231, 76, 60,1.0)",
+                pointBorderColor: "rgba(255,255,255,1)",
                 pointBackgroundColor: "#fff",
-                pointRadius: 3,
+                pointRadius: 1,
                 pointHitRadius: 10,
                 data: []
             }]
@@ -30,11 +30,11 @@
             labels: [],
             datasets: [{
                 label: "Fuel, generator 1",
-                backgroundColor: "rgba(135, 211, 124, .3)",
-                borderColor: "rgba(75,192,192,1)",
-                pointBorderColor: "rgba(75,192,192,1)",
+                backgroundColor: "rgba(44, 36, 22, .3)",
+                borderColor: "rgba(44, 36, 22,1)",
+                pointBorderColor: "rgba(255,255,255,1)",
                 pointBackgroundColor: "#fff",
-                pointRadius: 3,
+                pointRadius: 1,
                 pointHitRadius: 10,
                 data: []
             }]
@@ -84,7 +84,6 @@
             let measurementArray = measurement.split(',')
             let date = new Date(Number(measurementArray[0]) * 1000);
             let time = `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
-            console.log(chartCollection['linechart-va'])
             chartCollection['linechart-va'].data.datasets[zone - 1].data.push(measurementArray[1])
             chartCollection['linechart-va'].data.labels.push(time);
             chartCollection['linechart-temp'].data.datasets[zone - 1].data.push(measurementArray[2])
