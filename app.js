@@ -8,11 +8,13 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const socket_io = require('socket.io');
 
+// Get environment variables
 require('dotenv').config();
 
 const index = require('./routes/index');
 
 const app = express();
+// Get push messages function
 const pushMessages = require('./push-messages');
 
 // Socket.io connection
