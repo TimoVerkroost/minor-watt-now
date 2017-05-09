@@ -8,6 +8,7 @@ function pushMessages (generator, message, priority){
   });
   // User who receive the messages (min. 1 required)
   const users = [
+    // Default user most likely the administrator
     process.env.PUSHOVER_USER_KEY,
     //process.env.PUSHOVER_USER_KEY_DIEGO,
     //process.env.PUSHOVER_USER_KEY_COLIN

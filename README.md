@@ -56,6 +56,47 @@ Our idea will give Watt-now a real-time dashboard, that is easy to understand, t
 - Power usage predictions.
 - Notifications, to predefined mobile devices.
 
+## Push notifications
+For the push notifications we used an external service called [Pushover](https://pushover.net/). This service makes it possible to push messages to different device for example; Apple iPhone, Apple Watch, Android smartphone and Android smartwatch (this is just a little part the devices that are [supported](https://pushover.net/clients)). They also got an API for sending messages, so we can make our own wrapper to send messages to the subscribed users (in our case the on-site technicians).
+
+### Getting started with Pushover
+To use Pushover some actions are required. Some steps are for the administrator only (I'll mention that where needed).
+
+#### Create a Pushover account
+Create an account add [pushover.net](https://pushover.net/).
+
+#### Create a Pushover app (only required for the administrator)
+Create an application add [pushover.net/apps](https://pushover.net/apps).
+Define the following information when creating the application:
+* Name.
+* Type > "Application".
+* Description.
+* URL > the URL where the application will be running for example (http://localhost:3000).
+* Icon > Logo for the application.
+
+#### Get the user key to subscribe for the application and receive notifications
+Login add [pushover.net](https://pushover.net/) and in the top right of your screen your see ***Your User Key*** blow that you see your unique key that you can pass to the application administrator, so he/she can add you to the notification list.
+
+#### Add new users to the notification list (administrator only)
+To add an user you need his/hers User Key (see step above). You've to add the User Key to the environment variables and then the key needs to appear in the message loop.
+
+##### Add key to environment config
+Replace **NAME** to the name of the user or something else so you can recognize wich user it is.
+Replace **PlaceTheUserKeyHere** with the user key.
+```
+PUSHOVER_USER_KEY_NAME=PlaceTheUserKeyHere
+```
+
+##### Add the user to the message loop
+Go to `push-message.js` and add the new user.
+```javascript
+const users = [
+    // Default user most likely the administrator
+    process.env.PUSHOVER_USER_KEY,
+    // Added user
+    process.env.PUSHOVER_USER_KEY_NAME
+  ];
+```
 
 ## Flow
 ![flow-chart](./repo-images/flow-chart.png)
