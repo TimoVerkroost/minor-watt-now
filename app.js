@@ -1,6 +1,7 @@
 const File = require('./controller/fileReader');
 const express = require('express');
 const path = require('path');
+const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -22,24 +23,25 @@ app.io = io;
 app.use(compression());
 
 // Send push message to receiers bases on url parameters
-app.use('/message/:generator/:description/:priority', function (req, res, next) {
+app.use('/message/:generator/:message/:priority', function (req, res) {
   res.send(req.params);
   /*
    Parameter description:
    req.params.generator    = generator name
-   req.params.description  = status update description
+   req.params.message      = status update description
    req.params.priority     = priority of message can be (2, 1, 0, -1, -2) where 2 is the highest priority.
 
    Function description:
-   pushMessages(title, message, priority)
+   pushMessages(generator, message, priority)
   */
-  pushMessages(req.params.generator, req.params.description, Number(req.params.priority));
+  pushMessages(req.params.generator, req.params.message, Number(req.params.priority));
 });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+app.use(favicon(path.join(__dirname, 'public/images/icons', 'favicon-96x96.png')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

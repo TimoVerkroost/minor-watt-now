@@ -1,7 +1,7 @@
 // Pushover authentication
 const push = require( 'pushover-notifications' );
 // Push messages function
-function pushMessages (title, message, priority){
+function pushMessages (generator, message, priority){
   // Pushover app api key (required)
   const p = new push( {
     token: process.env.PUSHOVER_API_KEY
@@ -62,12 +62,21 @@ function pushMessages (title, message, priority){
   }
   // Message to receiver
   let msg = {
-    title: title,             // Notification title
-    message: message,	        // Message body (required)
-    sound: notificationSound, // Notification sound
-    priority: priority,       // Priority of notification
-    retry: 60,                // Only used when priority = 2 (Emergency), if receiver didn't acknowledged the notification.
-    expire: 3600              // Only used when priority = 2 (Emergency), expire time of retry
+    // HTML tags support b, i, u, font and a
+    // html: 1,
+    // Notification title
+    title: 'Generator update: ' + generator,
+    // Message body (required)
+    // message: '<b>'+ generator +'</b>: ' + message,
+    message: message,
+    // Notification sound
+    sound: notificationSound,
+    // Priority of notification
+    priority: priority,
+    // Only used when priority = 2 (Emergency), if receiver didn't acknowledged the notification.
+    retry: 60,
+    // Only used when priority = 2 (Emergency), expire time of retry
+    expire: 3600
   };
   // Get all receivers and send message to them
   for ( let i = 0, l = users.length; i < l; i++ ) {
