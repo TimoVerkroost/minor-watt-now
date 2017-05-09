@@ -1,6 +1,9 @@
+var LineByLineReader = require('line-by-line');
+
 module.exports = class File {
-    constructor(filePath) {
-        this.setFile(filePath)
+    constructor(filePath, socket) {
+        this.filePath = filePath;
+        this.socket = socket;
     }
 
     setFile(path) {
@@ -9,10 +12,14 @@ module.exports = class File {
         });
     }
 
-    getLine() {
-        this.file.on('line', function (line) {
-                console.log('Line from file:', line);
-            }
-        )
+    emitLines() {
+        var lr = new LineByLineReader(this.filePath);
+        lr.on('line', (line) => {
+            lr.pause();
+            setTimeout(() => {
+                this.socket.emit('measurement', line)
+                lr.resume();
+            }, 6000);
+        });
     }
 }

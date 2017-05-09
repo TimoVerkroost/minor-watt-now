@@ -1,3 +1,4 @@
+require('dotenv').config();
 var File = require('./controller/fileReader');
 var express = require('express');
 var path = require('path');
@@ -5,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compression = require('compression');
+var socket_io = require('socket.io');
 
 require('dotenv').config();
 
@@ -12,6 +14,12 @@ var index = require('./routes/index');
 
 var app = express();
 var pushMessages = require('./push-messages');
+
+
+// Socket.io connection
+var io = socket_io();
+app.io = io;
+
 
 // Gzip compression added
 app.use(compression());
@@ -57,6 +65,13 @@ app.use(function(err, req, res, next) {
 
 
 // Reading energy generator data
-var energyFile = new File('./data/generator-data.csv');
-energyFile.getLine();
+var energyFile = new File('./data/generator-data.csv', io);
+var temp = energyFile.emitLines();
+console.log(temp);
+
+
+io.on('connection', socket => {
+  console.log('user connected')
+})
+
 module.exports = app;
