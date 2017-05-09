@@ -62,10 +62,10 @@ For the push notifications we used an external service called [Pushover](https:/
 ### Getting started with Pushover
 To use Pushover some actions are required. Some steps are for the administrator only (I'll mention that where needed).
 
-#### Create a Pushover account
+#### 1. Create a Pushover account
 Create an account add [pushover.net](https://pushover.net/).
 
-#### Create a Pushover app (only required for the administrator)
+#### 1.1. Create a Pushover app (only required for the administrator)
 Create an application add [pushover.net/apps](https://pushover.net/apps).
 Define the following information when creating the application:
 * Name.
@@ -74,20 +74,20 @@ Define the following information when creating the application:
 * URL > the URL where the application will be running for example (http://localhost:3000).
 * Icon > Logo for the application.
 
-#### Get the user key to subscribe for the application and receive notifications
+#### 2. Get the user key to subscribe for the application and receive notifications
 Login add [pushover.net](https://pushover.net/) and in the top right of your screen your see ***Your User Key*** blow that you see your unique key that you can pass to the application administrator, so he/she can add you to the notification list.
 
-#### Add new users to the notification list (administrator only)
+#### 2.1. Add new users to the notification list (administrator only)
 To add an user you need his/hers User Key (see step above). You've to add the User Key to the environment variables and then the key needs to appear in the message loop.
 
-##### Add key to environment config
+##### 2.1.1. Add key to environment config
 Replace **NAME** to the name of the user or something else so you can recognize which user it is.
 Replace **PlaceTheUserKeyHere** with the user key.
 ```
 PUSHOVER_USER_KEY_NAME=PlaceTheUserKeyHere
 ```
 
-##### Add the user to the message loop
+##### 2.1.2. Add the user to the message loop
 Go to `push-message.js` and add the new user.
 ```javascript
 const users = [
@@ -98,7 +98,7 @@ const users = [
   ];
 ```
 
-#### Push a notification to all the users in the loop
+#### 3. Push a notification to all the users in the loop
 The following router defines the notification title, body and priority.
 Example URL:
 Go to *http://www.YOURURL.com/message/Mainstage/The%20message%20to%20be%20send/1*
