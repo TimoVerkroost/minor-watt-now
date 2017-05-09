@@ -3,4 +3,7 @@
  */
 (function() {
     const socket = io();
+    socket.on('measurement', (line) => {
+        console.log(line)
+    })
 })();
