@@ -101,7 +101,7 @@ const users = [
 #### Push a notification to all the users in the loop
 The following router defines the notification title, body and priority.
 Example URL:
-Go to http://www.YOURURL.com/message/Mainstage/The%20message%20to%20be%20send/1
+Go to *http://www.YOURURL.com/message/Mainstage/The%20message%20to%20be%20send/1*
 The notification that all the users will receive:
 Title: **Mainstage**
 Message: **The message to be send**
