@@ -4,7 +4,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compression = require('compression');
-var sockIO = require('socket.io')();
 
 require('dotenv').config();
 
@@ -16,21 +15,9 @@ var pushMessages = require('./push-messages');
 // Gzip compression added
 app.use(compression());
 
-// Init socket.io
-app.sockIO = sockIO;
-
-// User connects to website
-sockIO.on('connection', function (socket) {
-  console.log('user connected: ' + socket.id);
-  socket.on('disconnect', function(){
-    console.log('user exit: ' + socket.id);
-  });
-});
-
 app.use('/message/:generator/:description', function (req, res, next) {
   res.send(req.params);
   pushMessages(req.params.generator, req.params.description);
-  //sockIO.emit('push_message', req.params.generator, req.params.description);
 });
 
 // view engine setup
