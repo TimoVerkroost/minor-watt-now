@@ -65,8 +65,7 @@ app.use(function(err, req, res, next) {
 
 // Reading energy generator data
 var energyFile = new File('./data/generator-data.csv', io);
-var temp = energyFile.emitLines();
-console.log(temp);
+energyFile.emitLines();
 
 
 io.on('connection', socket => {
