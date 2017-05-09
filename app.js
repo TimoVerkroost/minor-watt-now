@@ -1,31 +1,39 @@
-var File = require('./controller/fileReader');
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var compression = require('compression');
-var socket_io = require('socket.io');
+const File = require('./controller/fileReader');
+const express = require('express');
+const path = require('path');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const socket_io = require('socket.io');
 
 require('dotenv').config();
 
-var index = require('./routes/index');
+const index = require('./routes/index');
 
-var app = express();
-var pushMessages = require('./push-messages');
-
+const app = express();
+const pushMessages = require('./push-messages');
 
 // Socket.io connection
-var io = socket_io();
+const io = socket_io();
 app.io = io;
-
 
 // Gzip compression added
 app.use(compression());
 
-app.use('/message/:generator/:description', function (req, res, next) {
+// Send push message to receiers bases on url parameters
+app.use('/message/:generator/:description/:priority', function (req, res, next) {
   res.send(req.params);
-  pushMessages(req.params.generator, req.params.description);
+  /*
+   Parameter description:
+   req.params.generator    = generator name
+   req.params.description  = status update description
+   req.params.priority     = priority of message can be (2, 1, 0, -1, -2) where 2 is the highest priority.
+
+   Function description:
+   pushMessages(title, message, priority)
+  */
+  pushMessages(req.params.generator, req.params.description, Number(req.params.priority));
 });
 
 // view engine setup
@@ -42,7 +50,7 @@ app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -58,18 +66,13 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
-
-
-
-
 // Reading energy generator data
-var energyFile = new File('./data/generator-data.csv', io);
+const energyFile = new File('./data/generator-data.csv', io);
 energyFile.emitLines();
 
-
+// Socket connection
 io.on('connection', socket => {
-  console.log('user connected')
-})
+  console.log('user connected');
+});
 
 module.exports = app;
