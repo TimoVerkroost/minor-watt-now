@@ -1,23 +1,62 @@
 <header>
-    <h1>{{title}}</h1>
-    <p>Welcome to {{title}}</p>
+    <h1>Watt-Now</h1>
 </header>
+<section class="alert">
+    <!-- <p class="alert bg-info"><strong>Information Alert. </strong>Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
+    <p class="alert bg-success"><strong>Success! </strong>All generators are working effectively.</p>
+    <p class="alert bg-alert"><strong>Alert! </strong>The generator in <span class="specialZone">{{zone}}zone 1</span> can use a smalle generator.</p>
+    <p class="alert bg-error"><strong>Error! </strong>The generator in <span class="specialZone">{{zone}}zone 1</span> needs to be a bigger generator within the next 30 min.</p>
+</section>
+
+
 
 <aside>
-    <section class="item">
-            <p>zone</p>
-            <h2>1</h2>
-    </section>
-    <section class="item">
-            <p>zone</p>
-            <h2>2</h2>
-    </section>
-    <section class="item">
-            <p>zone</p>
-            <h2>3</h2>
-    </section>
+    <table class="table">
+        <thead></thead>
+        <caption>Recieved data</caption>
+        <tbody>
+            <tr>
+                <th>Zone</th>
+                <th>Generator type</th>
+                <th>Volt/A</th>
+                <th>Fuel</th>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr class="zone1">
+                <td>Zone 1<span></td>
+                <td>63A</td>
+                <td>50 V/h</td>
+                <td>0.5 L/m</td>
+            </tr>
+            <tr class="zone2">
+                <td>Zone 2</td>
+                <td>125A</td>
+                <td>110 V/h</td>
+                <td>4 L/m</td>
+            </tr>
+            <tr class="zone3">
+                <td>Zone 3</td>
+                <td>16A</td>
+                <td>12 V/h</td>
+                <td>0.2 L/m</td>
+            </tr>
+            <tr class="zone4">
+                <td>Zone 4</td>
+                <td>63A</td>
+                <td>50 V/h</td>
+                <td>0.5 L/m</td>
+            </tr>
+            <tr class="zone5">
+                <td>Zone 5</td>
+                <td>400A</td>
+                <td>350 V/h</td>
+                <td>5 L/m</td>
+            </tr>
+        </tbody>
+    </table>
 </aside>
 
 <main>
-<p>asdddd dddddd ddddd dddddd dddddddd</p>
+    <img src="images/graph.jpg">
 </main>
