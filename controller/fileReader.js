@@ -13,13 +13,14 @@ module.exports = class File {
     }
 
     emitLines() {
-        var lr = new LineByLineReader(this.filePath);
+        const lr = new LineByLineReader(this.filePath);
+        let zone = 1;
         lr.on('line', (line) => {
             lr.pause();
             setTimeout(() => {
-                this.socket.emit('measurement', line)
+                this.socket.emit('measurement', [zone, line])
                 lr.resume();
-            }, 6000);
+            }, 100);
         });
     }
 }
