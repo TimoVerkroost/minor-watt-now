@@ -81,7 +81,7 @@ Login add [pushover.net](https://pushover.net/) and in the top right of your scr
 To add an user you need his/hers User Key (see step above). You've to add the User Key to the environment variables and then the key needs to appear in the message loop.
 
 ##### Add key to environment config
-Replace **NAME** to the name of the user or something else so you can recognize wich user it is.
+Replace **NAME** to the name of the user or something else so you can recognize which user it is.
 Replace **PlaceTheUserKeyHere** with the user key.
 ```
 PUSHOVER_USER_KEY_NAME=PlaceTheUserKeyHere
@@ -96,6 +96,32 @@ const users = [
     // Added user
     process.env.PUSHOVER_USER_KEY_NAME
   ];
+```
+
+#### Push a notification to all the users in the loop
+The following router defines the notification title, body and priority.
+Example URL:
+Go to http://www.YOURURL.com/message/Mainstage/The%20message%20to%20be%20send/1
+The notification that all the users will receive:
+Title: **Mainstage**
+Message: **The message to be send**
+Priority: **1**
+
+```javascript
+// Send push message to receiers bases on url parameters
+app.use('/message/:generator/:message/:priority', function (req, res) {
+  res.send(req.params);
+  /*
+   Parameter description:
+   req.params.generator    = generator name
+   req.params.message      = status update description
+   req.params.priority     = priority of message can be (2, 1, 0, -1, -2) where 2 is the highest priority.
+
+   Function description:
+   pushMessages(generator, message, priority)
+  */
+  pushMessages(req.params.generator, req.params.message, Number(req.params.priority));
+});
 ```
 
 ## Flow
