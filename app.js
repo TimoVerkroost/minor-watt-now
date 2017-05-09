@@ -1,4 +1,3 @@
-require('dotenv').config();
 var File = require('./controller/fileReader');
 var express = require('express');
 var path = require('path');
