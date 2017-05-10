@@ -3,7 +3,7 @@
         'linechart-va-data': {
             labels: [],
             datasets: [{
-                label: "VA, generator 1",
+                label: "Volt-Ampere, generator 1",
                 backgroundColor: "rgba(241, 196, 15,.3)",
                 borderColor: "rgba(241, 196, 15,1.0)",
                 pointBorderColor: "rgba(255,255,255,1)",
@@ -104,4 +104,34 @@
             chartCollection.updateData(zoneMeasurement[0], zoneMeasurement[1])
         })
     }
+
+var graphButtons = document.querySelectorAll(".graphButtons > button");
+var charts = document.querySelectorAll("canvas");
+
+
+hideCharts("linechart-va");
+
+graphButtons.forEach(function(element) {
+    element.addEventListener("click", function(activeID){
+        activeID = element
+        graphButtons.forEach(function(graphButtonsElement) {
+            graphButtonsElement.classList.remove("active");
+            activeID.classList.add("active");
+        })
+        hideCharts(activeID.id.slice(7, activeID.id.length));
+    });
+});
+
+function hideCharts(activeID){
+    console.log(activeID)
+
+    charts.forEach(function(chartElement) {
+        if (activeID == chartElement.id){
+            chartElement.style.display = "block";
+        }
+        else {
+            chartElement.style.display = "none";
+        }
+    });
+}
 })();
