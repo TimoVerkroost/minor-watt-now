@@ -20,7 +20,7 @@ module.exports = class File {
             setTimeout(() => {
                 this.socket.emit('measurement', [zone, line])
                 lr.resume();
-            }, 100);
+            }, 1000);
         });
     }
 }
