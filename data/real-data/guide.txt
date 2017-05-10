@@ -1,0 +1,5 @@
+
+- Alleen totaal data (Geen fasen)
+- Average per minute
+- Real, apparant and fuel data
+cat data.csv | awk -F ',' '{unixTime = $1;OFS=","; if ($2==33){print strftime("%c", unixTime)","$1","$4","$5","$11}}' | awk -F ',' 'BEGIN{min=0;amount=1;fuel=0;real=0;apparant=0}{if (substr($1,15,2) == min){amount++;real+=$3;apparant+=$4;fuel+=$5}else{min=substr($1,15,2);fuel = fuel / amount;real = real / amount;apparant /= amount;print $2"\t"real"\t"apparant"\t"fuel"\t";}}'
