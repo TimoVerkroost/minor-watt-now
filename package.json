@@ -35,6 +35,7 @@
     "express": "~4.14.1",
     "hbs": "~4.0.1",
     "line-by-line": "^0.1.5",
+    "mongoose": "^4.9.8",
     "morgan": "~1.7.0",
     "pushover-notifications": "^0.2.4",
     "request": "^2.81.0",

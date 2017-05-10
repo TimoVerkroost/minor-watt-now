@@ -12,6 +12,7 @@ const socket_io = require('socket.io');
 require('dotenv').config();
 
 const index = require('./routes/index');
+const devices = require('./routes/devices');
 
 const app = express();
 // Get push messages function
@@ -51,6 +52,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/devices/', devices);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
