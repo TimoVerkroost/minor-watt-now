@@ -142,7 +142,7 @@ table tr td:first-of-type{
 }
 
 /*BUTTONS*/
-.btn {
+.btn, select {
     margin: 0.2em 0;
     padding: 1em 2.2em;
     border: none;
