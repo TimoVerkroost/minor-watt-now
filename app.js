@@ -71,12 +71,16 @@ app.use(function(err, req, res, next) {
 });
 
 // Reading energy generator data
-const energyFile = new File('./data/generator-data.csv', io);
+const energyFile = new File('./data/real-data/spiked_filtered_total_data.csv', io);
 energyFile.emitLines();
 
 // Socket connection
 io.on('connection', socket => {
   console.log('user connected');
+  console.log(energyFile.getLastLabels())
+  console.log(energyFile.getLastRealPowerData())
+  console.log(energyFile.getLastApparantPowerData())
+  console.log(energyFile.getLastFuelData())
 });
 
 module.exports = app;
