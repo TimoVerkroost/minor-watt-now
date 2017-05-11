@@ -6,8 +6,6 @@
                 label: "Real Power, generator 1",
                 backgroundColor: "rgba(241, 196, 15,.3)",
                 borderColor: "rgba(241, 196, 15,1.0)",
-                pointBorderColor: "rgba(255,255,255,1)",
-                pointBackgroundColor: "#fff",
                 pointRadius: 1,
                 pointHitRadius: 10,
                 data: []
@@ -15,8 +13,38 @@
                 label: "Apparant Power, generator 1",
                 backgroundColor: "rgba(52, 152, 219,.3)",
                 borderColor: "rgba(52, 152, 219,1.0)",
-                pointBorderColor: "rgba(255,255,255,1)",
-                pointBackgroundColor: "#fff",
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: []
+            }]
+        },
+        'linechart-phase-data': {
+            labels: [],
+            datasets: [{
+                label: "Real Power phase 1, generator 1",
+                backgroundColor: "rgba(196,77,88,.2)",
+                borderColor: "rgba(196,77,88,1.0)",
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: []
+            }, {
+                label: "Real Power phase 2, generator 1",
+                backgroundColor: "rgba(52, 152, 219,.2)",
+                borderColor: "rgba(52, 152, 219,1.0)",
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: []
+            }, {
+                label: "Real Power phase 3, generator 1",
+                backgroundColor: "rgba(78,205,196,.2)",
+                borderColor: "rgba(78,205,196,1.0)",
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: []
+            }, {
+                label: "Real Power total, generator 1",
+                backgroundColor: "rgba(199,244,100,.2)",
+                borderColor: "rgba(199,244,100,1.0)",
                 pointRadius: 1,
                 pointHitRadius: 10,
                 data: []
@@ -26,10 +54,8 @@
             labels: [],
             datasets: [{
                 label: "Fuel, generator 1",
-                backgroundColor: "rgba(44, 36, 22, .3)",
-                borderColor: "rgba(44, 36, 22,1)",
-                pointBorderColor: "rgba(255,255,255,1)",
-                pointBackgroundColor: "#fff",
+                backgroundColor: "rgba(119,79,56, .3)",
+                borderColor: "rgba(119,79,56,1)",
                 pointRadius: 1,
                 pointHitRadius: 10,
                 data: []
@@ -144,8 +170,33 @@
             chartCollection['linechart-fuel'].data.datasets[0].data = dataArrays[3]
             chartCollection['linechart-fuel'].data.labels = timeArray;
         })
+        
         socket.on('measurement', (dataLine) => {
             chartCollection.updateData(dataLine)
+        });
+                
+        socket.on('addPhase1', (dataLine) => {
+            let measurementArray = dataLine.split(',')
+            let date = new Date(Math.round(Number(measurementArray[0])) * 1000);
+            let time = `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
+            console.log(measurementArray[0])
+            chartCollection['linechart-phase'].data.datasets[0].data.push(Number(measurementArray[1]))
+            chartCollection['linechart-phase'].data.labels.push(time);
+        });
+                
+        socket.on('addPhase2', (dataLine) => {
+            let measurementArray = dataLine.split(',')
+            chartCollection['linechart-phase'].data.datasets[1].data.push(Number(measurementArray[1]))
+        });
+                
+        socket.on('addPhase3', (dataLine) => {
+            let measurementArray = dataLine.split(',')
+            chartCollection['linechart-phase'].data.datasets[2].data.push(Number(measurementArray[1]))        });
+                
+        socket.on('addPhase4', (dataLine) => {
+            let measurementArray = dataLine.split(',')
+            chartCollection['linechart-phase'].data.datasets[3].data.push(Number(measurementArray[1]))
+            chartCollection['linechart-phase'].update();
         });
 
 
