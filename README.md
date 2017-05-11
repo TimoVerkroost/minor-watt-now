@@ -223,15 +223,16 @@ npm run watch
 
 ## Collaborators
 
-| Timo Verkroost          | Colin Dörr            | Diego Staphorst      |
-| ----------------------- |:---------------------:| --------------------:|
+| Timo Verkroost          | Colin Dörr            | Diego Staphorst           |
+| ----------------------- |:---------------------:| -------------------------:|
+| Push notifications      | Dashboard             | Visualisation             |
 | ![Timo Verkroost][timo] | ![Colin Dörr][colin]  | ![Diego Staphorst][diego] |
 
 ## Licence
 MIT © Timo Verkroost, Colin Dörr, Diego Staphorst
 
-[timo]: https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAXhAAAAJDVjMWYwOTYzLTVkNjUtNDZmOC05MjQ2LWNjMWUwYWJlZjE1Ng.jpg "Timo Verkroost"
+[timo]: https://avatars2.githubusercontent.com/u/17787175?v=3&s=460 "Timo Verkroost"
 
-[colin]: https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAATrAAAAJGM4MWEzYjY0LWE1ZTktNDdhMi04NDQzLWIyNWJhYTRiNjc0Nw.jpg "Colin Dörr"
+[colin]: https://avatars3.githubusercontent.com/u/8983587?v=3&s=460 "Colin Dörr"
 
 [diego]: https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlCAAAAJGM5NDkxYjgzLWE0NDktNDJjNi1iYTk4LWUzYjQyYmZjMDI1OA.jpg "Diego Staphorst"
