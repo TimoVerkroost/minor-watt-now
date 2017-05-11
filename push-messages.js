@@ -1,33 +1,6 @@
 // Pushover authentication
 const push = require( 'pushover-notifications' );
 
-const messages = {
-  peak: {
-    message: 'Is peaking, attention is required',
-    priority: 0
-  },
-  overheating: {
-    message: 'Is overheating, immediate attention is required',
-    priority: 2
-  },
-  efficientLow: {
-    message: 'Is running low efficient, it can be turned off',
-    priority: 1
-  },
-  broadbandLow: {
-    message: 'The 2G broadband data bundle is running out of credits, data upgrade is required',
-    priority: 0
-  },
-  additionalGenerator: {
-    message: 'To much power is asked, an additional generator needs te be started',
-    priority: 2
-  },
-  lostConnection: {
-    message: 'The connection with this generator is lost',
-    priority: 2
-  }
-};
-
 // Push messages function
 function pushMessages (generator, message, priority){
   // Pushover app api key (required)
@@ -94,7 +67,7 @@ function pushMessages (generator, message, priority){
     // HTML tags support b, i, u, font and a
     // html: 1,
     // Notification title
-    title: 'Generator update: ' + generator,
+    title: 'Update: ' + generator,
     // Message body (required)
     // message: '<b>'+ generator +'</b>: ' + message,
     message: message,
