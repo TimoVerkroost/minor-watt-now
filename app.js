@@ -15,6 +15,7 @@ const index = require('./routes/index');
 
 const app = express();
 // Get push messages function
+const messages = require('./messages');
 const pushMessages = require('./push-messages');
 
 // Socket.io connection
@@ -24,20 +25,68 @@ app.io = io;
 // Gzip compression added
 app.use(compression());
 
-// Send push message to receiers bases on url parameters
-app.use('/message/:generator/:message/:priority', function (req, res) {
-  res.send(req.params);
-  /*
-   Parameter description:
-   req.params.generator    = generator name
-   req.params.message      = status update description
-   req.params.priority     = priority of message can be (2, 1, 0, -1, -2) where 2 is the highest priority.
+// Send push message to receivers bases on url parameters
+/*
+ Parameter description:
+ req.params.generator              = generator name
+ messages.MESSAGENAME.message      = status update description
+ messages.MESSAGENAME.priority     = priority of message can be (2, 1, 0, -1, -2) where 2 is the highest priority.
 
-   Function description:
-   pushMessages(generator, message, priority)
-  */
-  pushMessages(req.params.generator, req.params.message, Number(req.params.priority));
+ Function description:
+ pushMessages(generator, message, priority)
+*/
+// BEGIN OF DEMO PUSH NOTIFICATIONS
+// peak demo
+app.use('/demo/peak/:generator', function (req, res) {
+  res.send(req.params);
+  let messageConfig = [req.params.generator, messages.peak.message, messages.peak.priority];
+  io.emit('peak', messageConfig);
+  pushMessages(messageConfig);
 });
+
+// overheating demo
+app.use('/demo/overheating/:generator', function (req, res) {
+  res.send(req.params);
+  pushMessages(req.params.generator, messages.overheating.message, messages.overheating.priority);
+});
+
+// efficientLow demo
+app.use('/demo/efficient-low/:generator', function (req, res) {
+  res.send(req.params);
+  pushMessages(req.params.generator, messages.efficientLow.message, messages.efficientLow.priority);
+});
+
+// broadbandLow demo
+app.use('/demo/broadband-low/:generator', function (req, res) {
+  res.send(req.params);
+  pushMessages(req.params.generator, messages.broadbandLow.message, messages.broadbandLow.priority);
+});
+
+// additionalGenerator demo
+app.use('/demo/power/:generator', function (req, res) {
+  res.send(req.params);
+  pushMessages(req.params.generator, messages.additionalGenerator.message, messages.additionalGenerator.priority);
+});
+
+// lostConnection demo
+app.use('/demo/lost-connection/:generator', function (req, res) {
+  res.send(req.params);
+  pushMessages(req.params.generator, messages.lostConnection.message, messages.lostConnection.priority);
+});
+
+// fuelLow demo
+app.use('/demo/fuel/:generator', function (req, res) {
+  res.send(req.params);
+  pushMessages(req.params.generator, messages.fuelLow.message, messages.fuelLow.priority);
+});
+
+// unknownError demo
+app.use('/demo/fuel/:generator', function (req, res) {
+  res.send(req.params);
+
+  pushMessages(req.params.generator, messages.unknownError.message, messages.unknownError.priority);
+});
+// END OF DEMO PUSH NOTIFICATIONS
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
