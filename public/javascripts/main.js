@@ -96,8 +96,6 @@
             chartCollection['linechart-temp'].update();
             chartCollection['linechart-fuel'].update();
         }
-    }
-    chartCollection.render();
 
     if (document.getElementById('socketScript')) {
         const socket = io();
