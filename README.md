@@ -225,7 +225,6 @@ npm run watch
 
 | Timo Verkroost          | Colin Dörr            | Diego Staphorst           |
 | ----------------------- |:---------------------:| -------------------------:|
-| Push notifications      | Dashboard             | Visualisation             |
 | ![Timo Verkroost][timo] | ![Colin Dörr][colin]  | ![Diego Staphorst][diego] |
 
 ## Licence
