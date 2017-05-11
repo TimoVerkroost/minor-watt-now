@@ -234,4 +234,4 @@ MIT © Timo Verkroost, Colin Dörr, Diego Staphorst
 
 [colin]: https://avatars3.githubusercontent.com/u/8983587?v=3&s=460 "Colin Dörr"
 
-[diego]: https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlCAAAAJGM5NDkxYjgzLWE0NDktNDJjNi1iYTk4LWUzYjQyYmZjMDI1OA.jpg "Diego Staphorst"
+[diego]: https://avatars0.githubusercontent.com/u/10053770?v=3&s=460 "Diego Staphorst"
