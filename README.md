@@ -59,6 +59,9 @@ Our idea will give Watt-now a real-time dashboard, that is easy to understand, t
 ## Push notifications
 For the push notifications we used an external service called [Pushover](https://pushover.net/). This service makes it possible to push messages to different device for example; Apple iPhone, Apple Watch, Android smartphone and Android smartwatch (this is just a little part the devices that are [supported](https://pushover.net/clients)). They also got an API for sending messages, so we can make our own wrapper to send messages to the subscribed users (in our case the on-site technicians).
 
+
+**[Pushover API documentation](https://pushover.net/api)**
+
 ### Getting started with Pushover
 To use Pushover some actions are required. Some steps are for the administrator only (I'll mention that where needed).
 
@@ -220,7 +223,18 @@ npm run watch
 ## Wishlist
 - [ ] Keep track of previeus collected data in a external database, to predict future power usage.
 - [ ] Be able, to add the event planning, to be able, to predict how what power zones need more power at a specific time (when a show with a lot of lights starts).
-- [ ] 
+
+## Collaborators
+
+Timo Verkroost  | Colin Dörr  | Diego Staphorst  
+--- | --- | ---
+![Timo Verkroost][timo] | ![Colin Dörr][colin]  | ![Diego Staphorst][diego]
 
 ## Licence
 MIT © Timo Verkroost, Colin Dörr, Diego Staphorst
+
+[timo]: https://avatars2.githubusercontent.com/u/17787175?v=3&s=460 "Timo Verkroost"
+
+[colin]: https://avatars3.githubusercontent.com/u/8983587?v=3&s=460 "Colin Dörr"
+
+[diego]: https://avatars0.githubusercontent.com/u/10053770?v=3&s=460 "Diego Staphorst"
