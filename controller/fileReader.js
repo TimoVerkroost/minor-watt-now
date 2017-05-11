@@ -65,7 +65,6 @@ module.exports = class File {
         phase1.on('line', (line) => {
             phase1.pause();
             setTimeout(() => {
-                console.log(line)
                 this.socket.emit('addPhase1', line)
                 phase1.resume();
             }, 1000);
