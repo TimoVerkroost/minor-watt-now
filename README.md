@@ -109,19 +109,41 @@ The notification that all the users will receive:
 
 ```javascript
 // Send push message to receiers bases on url parameters
-app.use('/message/:generator/:message/:priority', function (req, res) {
-  res.send(req.params);
-  /*
-   Parameter description:
-   req.params.generator    = generator name
-   req.params.message      = status update description
-   req.params.priority     = priority of message can be (2, 1, 0, -1, -2) where 2 is the highest priority.
+/*
+ Parameter description:
+ req.params.generator              = generator name
+ messages.MESSAGENAME.message      = status update description
+ messages.MESSAGENAME.priority     = priority of message can be (2, 1, 0, -1, -2) where 2 is the highest priority.
 
-   Function description:
-   pushMessages(generator, message, priority)
-  */
-  pushMessages(req.params.generator, req.params.message, Number(req.params.priority));
+ Function description:
+ pushMessages(generator, message, priority)
+*/
+// app.js (serverside)
+/* ::STATUS:: = status message can be: 
+- peak 
+- overheating
+- efficientLow
+- broadbandLow
+- additionalGenerator
+- lostConnection
+- fuelLow
+- unknownError
+(see messages.js for more details)
+::GENERATOR:: = name of the generator
+*/
+app.use('/demo/::STATUS::/::GENERATOR::', function (req, res) {
+  res.send(req.params);
+  // Emit to dashboard
+  io.emit('::STATUS::', req.params.generator, messages.::STATUS::.message, messages.::STATUS::.priority);
+  // Push notification
+  pushMessages(req.params.generator, messages.::STATUS::.message, messages.::STATUS::.priority);
 });
+
+// main.js (clientside)
+socket.on('::STATUS::', (gen, msg, prio) => {
+    // Run something
+});
+
 ```
 
 ## Flow
