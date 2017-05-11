@@ -43,6 +43,7 @@
                     fontSize: 12
                 }
             },
+
             scales: {
                 yAxes: [{
                     stacked: false,
@@ -61,8 +62,9 @@
                     // },
                     ticks: {
                         fontSize: 15,
-autoSkip: true,
-                maxTicksLimit: 20,                    }
+                        autoSkip: true,
+                        maxTicksLimit: 20,
+                    }
                 }]
             }
         },
@@ -79,13 +81,12 @@ autoSkip: true,
             let measurementArray = dataLine.split(';')
             let date = new Date(Number(measurementArray[0]) * 1000);
             let time = `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
-
-            chartCollection['linechart-va'].data.datasets[0].data.push(Number(measurementArray[1]));
-            chartCollection['linechart-va'].data.datasets[1].data.push(Number(measurementArray[2]));
+            chartCollection['linechart-va'].data.datasets[0].data.push(Number(measurementArray[1]))
+            chartCollection['linechart-va'].data.datasets[1].data.push(Number(measurementArray[2]))
             chartCollection['linechart-va'].data.labels.push(time);
-
-            chartCollection['linechart-fuel'].data.datasets[0].data.push(Number(measurementArray[3]));
-            chartCollection['linechart-fuel'].data.labels.push(time);
+            
+            chartCollection['linechart-fuel'].data.datasets[0].data.push(Number(measurementArray[3]))
+            // chartCollection['linechart-fuel'].data.labels.push(time);
 
             chartCollection['linechart-va'].update();
             chartCollection['linechart-fuel'].update();
@@ -132,14 +133,18 @@ autoSkip: true,
     if (document.getElementById('socketScript')) {
         const socket = io();
         socket.on('backupdata', (dataArrays) => {
-            let timeArray = dataArrays[0].reduce((unixTime) => {
-                console.log(dataArrays[0])
-                console.log(new Date(Number(unixTime) * 1000));
-            });
+            let timeArray = dataArrays[0].reduce((array, unixTime) => {
+                let date = new Date(Number(unixTime) * 1000);
+                let time = `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
+                array.push(time);
+                return array;
+            }, [])
             chartCollection['linechart-va'].data.datasets[0].data = dataArrays[1];
             chartCollection['linechart-va'].data.datasets[1].data = dataArrays[2];
+            chartCollection['linechart-va'].data.labels = timeArray;
             chartCollection['linechart-fuel'].data.datasets[0].data = dataArrays[3]
-        });
+            chartCollection['linechart-fuel'].data.labels = timeArray;
+        })
         socket.on('measurement', (dataLine) => {
             chartCollection.updateData(dataLine)
         });
