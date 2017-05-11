@@ -223,9 +223,9 @@ npm run watch
 
 ## Collaborators
 
-| Timo Verkroost          | Colin Dörr            | Diego Staphorst           |
-| ----------------------- |:---------------------:| -------------------------:|
-| ![Timo Verkroost][timo] | ![Colin Dörr][colin]  | ![Diego Staphorst][diego] |
+Timo Verkroost  | Colin Dörr  | Diego Staphorst  
+--- | --- | ---
+![Timo Verkroost][timo] | ![Colin Dörr][colin]  | ![Diego Staphorst][diego]
 
 ## Licence
 MIT © Timo Verkroost, Colin Dörr, Diego Staphorst
