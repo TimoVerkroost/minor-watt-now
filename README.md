@@ -220,7 +220,18 @@ npm run watch
 ## Wishlist
 - [ ] Keep track of previeus collected data in a external database, to predict future power usage.
 - [ ] Be able, to add the event planning, to be able, to predict how what power zones need more power at a specific time (when a show with a lot of lights starts).
-- [ ] 
+
+## Collaborators
+
+| Timo Verkroost          | Colin Dörr            | Diego Staphorst      |
+| ----------------------- |:---------------------:| --------------------:|
+| ![Timo Verkroost][timo] | ![Colin Dörr][colin]  | ![Diego Staphorst][diego] |
 
 ## Licence
 MIT © Timo Verkroost, Colin Dörr, Diego Staphorst
+
+[timo]: https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAXhAAAAJDVjMWYwOTYzLTVkNjUtNDZmOC05MjQ2LWNjMWUwYWJlZjE1Ng.jpg "Timo Verkroost"
+
+[colin]: https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAATrAAAAJGM4MWEzYjY0LWE1ZTktNDdhMi04NDQzLWIyNWJhYTRiNjc0Nw.jpg "Colin Dörr"
+
+[diego]: https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlCAAAAJGM5NDkxYjgzLWE0NDktNDJjNi1iYTk4LWUzYjQyYmZjMDI1OA.jpg "Diego Staphorst"
