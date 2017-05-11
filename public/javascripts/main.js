@@ -103,7 +103,6 @@
         charts.forEach(function (element) {
             element.style.visibility = "hidden";
             setTimeout(function () {
-                console.log("Show now")
                 element.style.visibility = "visible";
             }, 300);
         });
@@ -159,42 +158,34 @@
         */
       // peak
       socket.on('peak', (gen, msg, prio) => {
-          console.log(gen + ' ' + msg + ' ' + prio);
           makeMessage(gen, msg, prio);
       });
     // overheating
       socket.on('overheating', (gen, msg, prio) => {
-          console.log(gen + ' ' + msg + ' ' + prio);
           makeMessage(gen, msg, prio);
       });
     // efficientLow
       socket.on('efficientLow', (gen, msg, prio) => {
-          console.log(gen + ' ' + msg + ' ' + prio);
           makeMessage(gen, msg, prio);
       });
     // broadbandLow
       socket.on('broadbandLow', (gen, msg, prio) => {
-          console.log(gen + ' ' + msg + ' ' + prio);
           makeMessage(gen, msg, prio);
       });
     // additionalGenerator
       socket.on('additionalGenerator', (gen, msg, prio) => {
-          console.log(gen + ' ' + msg + ' ' + prio);
           makeMessage(gen, msg, prio);
       });
     // lostConnection
       socket.on('lostConnection', (gen, msg, prio) => {
-          console.log(gen + ' ' + msg + ' ' + prio);
           makeMessage(gen, msg, prio);
       });
     // fuelLow
       socket.on('fuelLow', (gen, msg, prio) => {
-          console.log(gen + ' ' + msg + ' ' + prio);
           makeMessage(gen, msg, prio);
       });
     // unknownError
       socket.on('unknownError', (gen, msg, prio) => {
-          console.log(gen + ' ' + msg + ' ' + prio);
           makeMessage(gen, msg, prio);
       });
     // END OF STATUS UPDATES EMITS
