@@ -59,6 +59,9 @@ Our idea will give Watt-now a real-time dashboard, that is easy to understand, t
 ## Push notifications
 For the push notifications we used an external service called [Pushover](https://pushover.net/). This service makes it possible to push messages to different device for example; Apple iPhone, Apple Watch, Android smartphone and Android smartwatch (this is just a little part the devices that are [supported](https://pushover.net/clients)). They also got an API for sending messages, so we can make our own wrapper to send messages to the subscribed users (in our case the on-site technicians).
 
+
+**[Pushover API documentation](https://pushover.net/api)**
+
 ### Getting started with Pushover
 To use Pushover some actions are required. Some steps are for the administrator only (I'll mention that where needed).
 
