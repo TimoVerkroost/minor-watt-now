@@ -147,6 +147,29 @@ socket.on('::MESSAGENAME::', (gen, msg, prio) => {
 
 ```
 
+### Priority of notifications
+With Pushover we can send the priority of the notification with the message. There are 5 types of priority but we are using 3 of them. Every priority comes with his own properties and settings. The priorities are placed with numbers (2, 1, 0, -1 and -2) but we only using 2, 1 and 0 where 2 is the highest priority.
+
+**Unique notification sounds:** Pushover supports multiple notification sounds, we defined for each type of priority a different sound so it more clear what the priority of the message is when received.
+
+#### Emergency Priority (2)
+This is the highest level op priority this one is used for messages that can't be ignored, the coolest part of this one is that if the receiver is not responding on the message that he or she gets a reminder every minute unit they acknowledge the message. With this functionality we can almost ensure that the user read notification.
+The receiver gets a notification with the logo of the Watt-Now and on the smartwatches the title (generator name) is visible add once. The receiver also sees what priority the notification is.
+
+#### High Priority (1)
+This one is almost the same as the emergency priority but is not sending a reminder.
+
+#### Normal Priority (0)
+This is also the default priority if not specified. The receiver won't get the logo of Watt-Now on his watch and doesn't see what priority the notification is.
+
+### Screenshots
+Apple Watch:
+![flow-chart](./repo-images/apple-watch-screenshot.PNG)
+
+Apple iPhone 5s:
+![flow-chart](./repo-images/apple-iphone-screenshot.PNG)
+
+
 ## Flow
 ![flow-chart](./repo-images/flow-chart.png)
 
