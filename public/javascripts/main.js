@@ -80,17 +80,17 @@ autoSkip: true,
             let date = new Date(Number(measurementArray[0]) * 1000);
             let time = `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
 
-            chartCollection['linechart-va'].data.datasets[0].data.push(Number(measurementArray[1]))
-            chartCollection['linechart-va'].data.datasets[1].data.push(Number(measurementArray[2]))
+            chartCollection['linechart-va'].data.datasets[0].data.push(Number(measurementArray[1]));
+            chartCollection['linechart-va'].data.datasets[1].data.push(Number(measurementArray[2]));
             chartCollection['linechart-va'].data.labels.push(time);
 
-            chartCollection['linechart-fuel'].data.datasets[0].data.push(Number(measurementArray[3]))
+            chartCollection['linechart-fuel'].data.datasets[0].data.push(Number(measurementArray[3]));
             chartCollection['linechart-fuel'].data.labels.push(time);
 
             chartCollection['linechart-va'].update();
             chartCollection['linechart-fuel'].update();
         }
-    }
+    };
     chartCollection.render();
 
     // GRAPH DISPLAY AND BUTTONS
@@ -111,18 +111,18 @@ autoSkip: true,
     hideCharts("linechart-va");
     graphButtons.forEach(function (element) { // Add eventlisteners, to buttons, to keep track of the active button.
         element.addEventListener("click", function (activeID) {
-            activeID = element
+            activeID = element;
             graphButtons.forEach(function (graphButtonsElement) {
                 graphButtonsElement.classList.remove("active");
                 activeID.classList.add("active");
-            })
+            });
             hideCharts(activeID.id.slice(7, activeID.id.length));
         });
     });
 
     function hideCharts(activeID) { // Depending on the active button, show the corresponding chart.
         charts.forEach(function (chartElement) {
-            if (activeID == chartElement.id) {
+            if (activeID === chartElement.id) {
                 chartElement.style.display = "block";
             } else {
                 chartElement.style.display = "none";
@@ -135,13 +135,55 @@ autoSkip: true,
             let timeArray = dataArrays[0].reduce((unixTime) => {
                 console.log(dataArrays[0])
                 console.log(new Date(Number(unixTime) * 1000));
-            })
+            });
             chartCollection['linechart-va'].data.datasets[0].data = dataArrays[1];
             chartCollection['linechart-va'].data.datasets[1].data = dataArrays[2];
             chartCollection['linechart-fuel'].data.datasets[0].data = dataArrays[3]
-        })
+        });
         socket.on('measurement', (dataLine) => {
             chartCollection.updateData(dataLine)
+        });
+
+
+      // BEGIN OF STATUS UPDATES EMITS
+        /*
+        Parameter description:
+        gen   = generator name
+        msg   = status update description
+        prio  = priority of message can be (2, 1, 0, -1, -2) where 2 is the highest priority.
+        */
+      // peak
+        socket.on('peak', (gen, msg, prio) => {
+        console.log(gen + ' ' + msg + ' ' + prio);
+        });
+      // overheating
+        socket.on('overheating', (gen, msg, prio) => {
+        console.log(gen + ' ' + msg + ' ' + prio);
+        });
+      // efficientLow
+        socket.on('efficientLow', (gen, msg, prio) => {
+        console.log(gen + ' ' + msg + ' ' + prio);
+        });
+      // broadbandLow
+        socket.on('broadbandLow', (gen, msg, prio) => {
+        console.log(gen + ' ' + msg + ' ' + prio);
+        });
+      // additionalGenerator
+        socket.on('additionalGenerator', (gen, msg, prio) => {
+        console.log(gen + ' ' + msg + ' ' + prio);
+        });
+      // lostConnection
+        socket.on('lostConnection', (gen, msg, prio) => {
+        console.log(gen + ' ' + msg + ' ' + prio);
+        });
+      // fuelLow
+        socket.on('fuelLow', (gen, msg, prio) => {
+        console.log(gen + ' ' + msg + ' ' + prio);
+        });
+      // unknownError
+        socket.on('unknownError', (gen, msg, prio) => {
+        console.log(gen + ' ' + msg + ' ' + prio);
         })
+      // END OF STATUS UPDATES EMITS
     }
 })();

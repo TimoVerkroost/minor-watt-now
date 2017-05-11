@@ -39,51 +39,56 @@ app.use(compression());
 // peak demo
 app.use('/demo/peak/:generator', function (req, res) {
   res.send(req.params);
-  let messageConfig = [req.params.generator, messages.peak.message, messages.peak.priority];
-  io.emit('peak', messageConfig);
-  pushMessages(messageConfig);
+  io.emit('peak', req.params.generator, messages.peak.message, messages.peak.priority);
+  pushMessages(req.params.generator, messages.peak.message, messages.peak.priority);
 });
 
 // overheating demo
 app.use('/demo/overheating/:generator', function (req, res) {
   res.send(req.params);
+  io.emit('overheating', req.params.generator, messages.overheating.message, messages.overheating.priority);
   pushMessages(req.params.generator, messages.overheating.message, messages.overheating.priority);
 });
 
 // efficientLow demo
 app.use('/demo/efficient-low/:generator', function (req, res) {
   res.send(req.params);
+  io.emit('efficientLow', req.params.generator, messages.efficientLow.message, messages.efficientLow.priority);
   pushMessages(req.params.generator, messages.efficientLow.message, messages.efficientLow.priority);
 });
 
 // broadbandLow demo
 app.use('/demo/broadband-low/:generator', function (req, res) {
   res.send(req.params);
+  io.emit('broadbandLow', req.params.generator, messages.broadbandLow.message, messages.broadbandLow.priority);
   pushMessages(req.params.generator, messages.broadbandLow.message, messages.broadbandLow.priority);
 });
 
 // additionalGenerator demo
 app.use('/demo/power/:generator', function (req, res) {
   res.send(req.params);
+  io.emit('additionalGenerator', req.params.generator, messages.additionalGenerator.message, messages.additionalGenerator.priority);
   pushMessages(req.params.generator, messages.additionalGenerator.message, messages.additionalGenerator.priority);
 });
 
 // lostConnection demo
 app.use('/demo/lost-connection/:generator', function (req, res) {
   res.send(req.params);
+  io.emit('lostConnection', req.params.generator, messages.lostConnection.message, messages.lostConnection.priority);
   pushMessages(req.params.generator, messages.lostConnection.message, messages.lostConnection.priority);
 });
 
 // fuelLow demo
 app.use('/demo/fuel/:generator', function (req, res) {
   res.send(req.params);
+  io.emit('fuelLow', req.params.generator, messages.fuelLow.message, messages.fuelLow.priority);
   pushMessages(req.params.generator, messages.fuelLow.message, messages.fuelLow.priority);
 });
 
 // unknownError demo
 app.use('/demo/fuel/:generator', function (req, res) {
   res.send(req.params);
-
+  io.emit('unknownError', req.params.generator, messages.unknownError.message, messages.unknownError.priority);
   pushMessages(req.params.generator, messages.unknownError.message, messages.unknownError.priority);
 });
 // END OF DEMO PUSH NOTIFICATIONS
