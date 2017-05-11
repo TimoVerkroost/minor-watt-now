@@ -170,29 +170,29 @@
             chartCollection['linechart-fuel'].data.datasets[0].data = dataArrays[3]
             chartCollection['linechart-fuel'].data.labels = timeArray;
         })
-        
+
         socket.on('measurement', (dataLine) => {
             chartCollection.updateData(dataLine)
         });
-                
+
         socket.on('addPhase1', (dataLine) => {
             let measurementArray = dataLine.split(',')
             let date = new Date(Math.round(Number(measurementArray[0])) * 1000);
             let time = `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
-            console.log(measurementArray[0])
+            // console.log(measurementArray[0])
             chartCollection['linechart-phase'].data.datasets[0].data.push(Number(measurementArray[1]))
             chartCollection['linechart-phase'].data.labels.push(time);
         });
-                
+
         socket.on('addPhase2', (dataLine) => {
             let measurementArray = dataLine.split(',')
             chartCollection['linechart-phase'].data.datasets[1].data.push(Number(measurementArray[1]))
         });
-                
+
         socket.on('addPhase3', (dataLine) => {
             let measurementArray = dataLine.split(',')
             chartCollection['linechart-phase'].data.datasets[2].data.push(Number(measurementArray[1]))        });
-                
+
         socket.on('addPhase4', (dataLine) => {
             let measurementArray = dataLine.split(',')
             chartCollection['linechart-phase'].data.datasets[3].data.push(Number(measurementArray[1]))
@@ -245,7 +245,8 @@
   function makeMessage(gen, msg, prio){
       var alertContainer = document.querySelector("section.alert");
       var p = document.createElement("P");
-      var delayTime = 3000;
+      var delayTime = 10000;
+
           p.classList.add("alert")
               if (prio == 0 || prio == 1){p.classList.add("bg-alert")}
               else if (prio == 2){p.classList.add("bg-error")}
@@ -261,5 +262,38 @@
             if (s.opacity == 0){id.remove()};
             (s.opacity-=.1)<.0?s.display="none":setTimeout(fade,speed) })();
     }
+
+var tableData = document.querySelector(".table-data");
+var generateTable ={
+    init:function(){
+        for (i = 0; i < tableData.children.length; i++) {
+            var zoneChildren = tableData.children[i];
+            var zoneGrandchildren = zoneChildren.children;
+            generateTable.getVariables(i,zoneChildren.children[2].innerHTML, 2);
+            generateTable.getVariables(i,zoneChildren.children[3].innerHTML, 3);
+        }
+    },
+    getVariables:function(i,string, id){
+        var value = Number(string.slice(0,string.length-4));
+        var type =string.slice(string.length-4, string.length);
+        generateTable.makeData(i,string, id, value, type);
+        setTimeout(function(){ generateTable.resetData(i,string, id, value, type) }, 1000);
+    },
+    makeData:function(i,string, id, value, type){
+        value =  value + 1;
+        result = value + type;
+        document.querySelector(".table-data").children[i].children[id].innerHTML = result;
+    },
+    resetData:function(i,string, id, value, type){
+        value =  value;
+        result = value + type;
+        document.querySelector(".table-data").children[i].children[id].innerHTML = result;
+        setTimeout(function(){ generateTable.getVariables(i,string, id) }, 1000);
+    },
+}
+generateTable.init();
+
+
+
 
 })();
