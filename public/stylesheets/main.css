@@ -86,6 +86,7 @@ aside{
 }
 section.alert p{
     margin: 0.5em 0 0 0;
+    border-radius: 0.5em;
 }
 section.alert p:first-of-type{
     display: block;

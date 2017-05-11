@@ -84,7 +84,7 @@
             chartCollection['linechart-va'].data.datasets[0].data.push(Number(measurementArray[1]))
             chartCollection['linechart-va'].data.datasets[1].data.push(Number(measurementArray[2]))
             chartCollection['linechart-va'].data.labels.push(time);
-            
+
             chartCollection['linechart-fuel'].data.datasets[0].data.push(Number(measurementArray[3]))
             // chartCollection['linechart-fuel'].data.labels.push(time);
 
@@ -158,37 +158,57 @@
         prio  = priority of message can be (2, 1, 0, -1, -2) where 2 is the highest priority.
         */
       // peak
-        socket.on('peak', (gen, msg, prio) => {
-        console.log(gen + ' ' + msg + ' ' + prio);
-        });
-      // overheating
-        socket.on('overheating', (gen, msg, prio) => {
-        console.log(gen + ' ' + msg + ' ' + prio);
-        });
-      // efficientLow
-        socket.on('efficientLow', (gen, msg, prio) => {
-        console.log(gen + ' ' + msg + ' ' + prio);
-        });
-      // broadbandLow
-        socket.on('broadbandLow', (gen, msg, prio) => {
-        console.log(gen + ' ' + msg + ' ' + prio);
-        });
-      // additionalGenerator
-        socket.on('additionalGenerator', (gen, msg, prio) => {
-        console.log(gen + ' ' + msg + ' ' + prio);
-        });
-      // lostConnection
-        socket.on('lostConnection', (gen, msg, prio) => {
-        console.log(gen + ' ' + msg + ' ' + prio);
-        });
-      // fuelLow
-        socket.on('fuelLow', (gen, msg, prio) => {
-        console.log(gen + ' ' + msg + ' ' + prio);
-        });
-      // unknownError
-        socket.on('unknownError', (gen, msg, prio) => {
-        console.log(gen + ' ' + msg + ' ' + prio);
-        })
-      // END OF STATUS UPDATES EMITS
-    }
+      socket.on('peak', (gen, msg, prio) => {
+          console.log(gen + ' ' + msg + ' ' + prio);
+          makeMessage(gen, msg, prio);
+      });
+    // overheating
+      socket.on('overheating', (gen, msg, prio) => {
+          console.log(gen + ' ' + msg + ' ' + prio);
+          makeMessage(gen, msg, prio);
+      });
+    // efficientLow
+      socket.on('efficientLow', (gen, msg, prio) => {
+          console.log(gen + ' ' + msg + ' ' + prio);
+          makeMessage(gen, msg, prio);
+      });
+    // broadbandLow
+      socket.on('broadbandLow', (gen, msg, prio) => {
+          console.log(gen + ' ' + msg + ' ' + prio);
+          makeMessage(gen, msg, prio);
+      });
+    // additionalGenerator
+      socket.on('additionalGenerator', (gen, msg, prio) => {
+          console.log(gen + ' ' + msg + ' ' + prio);
+          makeMessage(gen, msg, prio);
+      });
+    // lostConnection
+      socket.on('lostConnection', (gen, msg, prio) => {
+          console.log(gen + ' ' + msg + ' ' + prio);
+          makeMessage(gen, msg, prio);
+      });
+    // fuelLow
+      socket.on('fuelLow', (gen, msg, prio) => {
+          console.log(gen + ' ' + msg + ' ' + prio);
+          makeMessage(gen, msg, prio);
+      });
+    // unknownError
+      socket.on('unknownError', (gen, msg, prio) => {
+          console.log(gen + ' ' + msg + ' ' + prio);
+          makeMessage(gen, msg, prio);
+      });
+    // END OF STATUS UPDATES EMITS
+  }
+  // makeMessage("generatorName: 'main-stage'", "message: 'generator not working'", priority: 2);
+  function makeMessage(gen, msg, prio){
+      var alertContainer = document.querySelector("section.alert");
+      var p = document.createElement("P");
+      var delayTime = 10000;
+          p.classList.add("alert")
+              if (prio == 0 || prio == 1){p.classList.add("bg-alert")}
+              else if (prio == 2){p.classList.add("bg-error")}
+          p.innerHTML= "<strong>"+gen+"! </strong>"+msg;
+          alertContainer.appendChild(p);
+          setTimeout(function(){ p.remove(); }, delayTime);
+  }
 })();
