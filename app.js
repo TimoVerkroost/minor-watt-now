@@ -77,10 +77,7 @@ energyFile.emitLines();
 // Socket connection
 io.on('connection', socket => {
   console.log('user connected');
-  console.log(energyFile.getLastLabels())
-  console.log(energyFile.getLastRealPowerData())
-  console.log(energyFile.getLastApparantPowerData())
-  console.log(energyFile.getLastFuelData())
+  socket.emit('backupdata', energyFile.getBackUp())
 });
 
 module.exports = app;

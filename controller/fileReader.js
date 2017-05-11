@@ -4,31 +4,25 @@ module.exports = class File {
     constructor(filePath, socket) {
         this.filePath = filePath;
         this.socket = socket;
-        this.lastLabels = [];        
+        this.lastLabels = [];
         this.lastRealPowerData = [];
         this.lastApparentPowerData = [];
         this.lastFuelData = [];
     }
 
     putDataInArrays(dataLine) {
-        let dataArray = dataLine.replace(/,/g, '.').split(';');
+        let dataArray = dataLine.split(';');
         this.lastLabels.push(dataArray[0]);
         this.lastRealPowerData.push(Number(dataArray[1]));
         this.lastApparentPowerData.push(Number(dataArray[2]));
         this.lastFuelData.push(Number(dataArray[3]));
     }
 
-    getLastLabels() {
-        return this.lastLabels;
-    }
-    getLastRealPowerData() {
-        return this.lastRealPowerData;
-    }
-    getLastApparantPowerData() {
-        return this.lastApparentPowerData;
-    }
-    getLastFuelData() {
-        return this.lastFuelData;
+    getBackUp() {
+        return [this.lastLabels,
+                this.lastRealPowerData,
+                this.lastApparentPowerData,
+                this.lastFuelData];
     }
 
     setFile(path) {
@@ -41,6 +35,7 @@ module.exports = class File {
         const lr = new LineByLineReader(this.filePath);
         let zone = 1;
         lr.on('line', (line) => {
+            line = line.replace(/,/g, '.');
             this.putDataInArrays(line);
             lr.pause();
             setTimeout(() => {

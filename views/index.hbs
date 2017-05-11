@@ -61,7 +61,6 @@
 <main>
     <section class="graphButtons">
         <button type="button" id="button-linechart-va" class="btn btn-primary active">Volt-Ampere</button>
-        <button type="button" id="button-linechart-temp" class="btn btn-secondary">Temperture</button>
         <button type="button" id="button-linechart-fuel" class="btn btn-secondary">Fuel</button>
 
         <select name="generatorSelection" id="selectGenerator">
@@ -73,6 +72,7 @@
         </select>
     </section>
     <section>
-      <div id="container" style="height: 400px; min-width: 310px"></div>
+            <canvas id="linechart-va"></canvas>
+            <canvas id="linechart-fuel"></canvas>
     </section>
 </main>
