@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "body-parser": "~1.16.0",
+    "chartjs-plugin-zoom": "^0.4.5",
     "compression": "^1.6.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.0",
