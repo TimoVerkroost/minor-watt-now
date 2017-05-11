@@ -59,9 +59,19 @@
 </aside>
 
 <main>
-    <button type="button" class="btn btn-primary active">Primary</button>
-    <button type="button" class="btn btn-secondary">Secondary</button>
-    <button type="button" class="btn btn-secondary">Tertiary</button>
+    <section class="graphButtons">
+        <button type="button" id="button-linechart-va" class="btn btn-primary active">Volt-Ampere</button>
+        <button type="button" id="button-linechart-temp" class="btn btn-secondary">Temperture</button>
+        <button type="button" id="button-linechart-fuel" class="btn btn-secondary">Fuel</button>
+
+        <select name="generatorSelection" id="selectGenerator">
+            <option>Generator 1</option>
+            <option>Generator 2</option>
+            <option>Generator 3</option>
+            <option>Generator 4</option>
+            <option>Generator 5</option>
+        </select>
+    </section>
     <section>
       <div id="container" style="height: 400px; min-width: 310px"></div>
     </section>

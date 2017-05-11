@@ -3,7 +3,7 @@
 <!-- ______________________ EISEN ______________________
 - [ ] Goede README bij de team-repo op Github (incl. Install notes, purpose, future work)
 - [ ] Er moet real life data gemeten worden die real-time ergens gevisualiseerd wordt
-- [ ] Het moet nuttig zijn, je moet kunnen verdedigen dat het stroomverbruik zou verminderen
+- [x] Het moet nuttig zijn, je moet kunnen verdedigen dat het stroomverbruik zou verminderen
 - [ ] Real life en real-time: Er moet real life data gemeten worden die real-time ergens gevisualiseerd wordt zodat eindgebruikers actie kunnen ondernemen.
 - [ ] Er moet minimaal een databron/input-stroom zijn waarvan je kan verwachten dat die tijdens het festival verandert (dus niet ALLEEN het programma)
 
@@ -170,6 +170,9 @@ npm run watch
 ## Finished todo's
 
 ## Wishlist
+- [ ] Keep track of previeus collected data in a external database, to predict future power usage.
+- [ ] Be able, to add the event planning, to be able, to predict how what power zones need more power at a specific time (when a show with a lot of lights starts).
+- [ ] 
 
 ## Licence
 MIT © Timo Verkroost, Colin Dörr, Diego Staphorst

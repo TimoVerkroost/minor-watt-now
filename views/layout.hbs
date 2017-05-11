@@ -15,18 +15,23 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+
     <link rel="manifest" href="/images/icons/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/main.css' />
+    <link rel='stylesheet' href='/stylesheets/main.min.css' />
   </head>
   <body>
+      
     {{{body}}}
-    <script id="socketScript" src="javascripts/vendors/socket.io.min.js"></script>
-    <script src="https://code.highcharts.com/stock/highstock.js"></script>
-    <script src="javascripts/main.js"></script>
+
+    <footer>
+        <script id="socketScript" src="javascripts/vendors/socket.io.min.js"></script>
+        <script id="socketScript" src="javascripts/vendors/chart.bundle.min.js"></script>
+        <script src="javascripts/main.js"></script>
+    </footer>
   </body>
 </html>
