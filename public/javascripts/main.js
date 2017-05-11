@@ -194,12 +194,21 @@
   function makeMessage(gen, msg, prio){
       var alertContainer = document.querySelector("section.alert");
       var p = document.createElement("P");
-      var delayTime = 10000;
+      var delayTime = 3000;
           p.classList.add("alert")
               if (prio == 0 || prio == 1){p.classList.add("bg-alert")}
               else if (prio == 2){p.classList.add("bg-error")}
           p.innerHTML= "<strong>"+gen+"! </strong>"+msg;
           alertContainer.appendChild(p);
-          setTimeout(function(){ p.remove(); }, delayTime);
+            setTimeout(function(){ fadeOut(p, 25) }, delayTime);
+            if (p.style.display == "none"){console.log("it's time to remove") ; id.remove()};
   }
+  function fadeOut(id, speed) {
+        var s = id.style;
+        s.opacity = 1;
+        (function fade() {
+            if (s.opacity == 0){id.remove()};
+            (s.opacity-=.1)<.0?s.display="none":setTimeout(fade,speed) })();
+    }
+
 })();
