@@ -80,6 +80,7 @@ function pushMessages (generator, message, priority){
     // Only used when priority = 2 (Emergency), expire time of retry
     expire: 3600
   };
+
   // Get all receivers and send message to them
   for ( let i = 0, l = users.length; i < l; i++ ) {
     // Receivers

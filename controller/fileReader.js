@@ -1,4 +1,8 @@
-var LineByLineReader = require('line-by-line');
+const LineByLineReader = require('line-by-line');
+
+// Get push messages function
+const messages = require('../messages');
+const pushMessages = require('../push-messages');
 
 module.exports = class File {
     constructor(filePath, socket) {
@@ -8,6 +12,9 @@ module.exports = class File {
         this.lastRealPowerData = [];
         this.lastApparentPowerData = [];
         this.lastFuelData = [];
+        this.lastRealPowerValue = 0;
+        this.lastApparentPowerValue = 0;
+        this.lastFuelRateValue = 0;
     }
 
     putDataInArrays(dataLine) {
@@ -16,6 +23,24 @@ module.exports = class File {
         this.lastRealPowerData.push(Number(dataArray[1]));
         this.lastApparentPowerData.push(Number(dataArray[2]));
         this.lastFuelData.push(Number(dataArray[3]));
+        // RealPower log
+        let realPower = Number(dataArray[1]);
+        if(realPower >= 70000 && realPower !== this.lastRealPowerValue) {
+          this.lastRealPowerValue = realPower;
+          pushMessages('Generator', messages.peak.message, messages.peak.priority);
+        }
+        // ApparentPower log
+        let apparentPower = Number(dataArray[2]);
+        if(apparentPower <= 5000 && apparentPower !== this.lastApparentPowerValue) {
+          this.lastApparentPowerValue = apparentPower;
+          pushMessages('Generator', messages.efficientLow.message, messages.efficientLow.priority);
+        }
+        // Fuel log
+        let fuel = Number(dataArray[3]);
+        if(fuel <= 20 && fuel !== this.lastFuelRateValue) {
+          this.lastFuelRateValue = fuel;
+          pushMessages('Generator', messages.fuelLow.message, messages.fuelLow.priority);
+        }
     }
 
     getBackUp() {
