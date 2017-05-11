@@ -127,6 +127,7 @@ app.use(function(err, req, res, next) {
 // Reading energy generator data
 const energyFile = new File('./data/real-data/spiked_filtered_total_data.csv', io);
 energyFile.emitLines();
+energyFile.emitPhaseLines();
 
 // Socket connection
 io.on('connection', socket => {

@@ -48,15 +48,52 @@ module.exports = class File {
 
     getBackUp() {
         return [this.lastLabels,
-                this.lastRealPowerData,
-                this.lastApparentPowerData,
-                this.lastFuelData];
+            this.lastRealPowerData,
+            this.lastApparentPowerData,
+            this.lastFuelData
+        ];
     }
 
     setFile(path) {
         this.file = require('readline').createInterface({
             input: require('fs').createReadStream(path)
         });
+    }
+
+    emitPhaseLines() {
+        let phase1 = new LineByLineReader('./data/real-data/phase-1-data.csv');
+        let phase2 = new LineByLineReader('./data/real-data/phase-2-data.csv');
+        let phase3 = new LineByLineReader('./data/real-data/phase-3-data.csv');
+        let phaseTotal = new LineByLineReader('./data/real-data/phase-33-data.csv');
+        phase1.on('line', (line) => {
+            phase1.pause();
+            setTimeout(() => {
+                console.log(line)
+                this.socket.emit('addPhase1', line)
+                phase1.resume();
+            }, 1000);
+        })
+        phase2.on('line', (line) => {
+            phase2.pause();
+            setTimeout(() => {
+                this.socket.emit('addPhase2', line)
+                phase2.resume();
+            }, 1000);
+        })
+        phase3.on('line', (line) => {
+            phase3.pause();
+            setTimeout(() => {
+                this.socket.emit('addPhase3', line)
+                phase3.resume();
+            }, 1000);
+        })
+        phaseTotal.on('line', (line) => {
+            phaseTotal.pause();
+            setTimeout(() => {
+                this.socket.emit('addPhase4', line)
+                phaseTotal.resume();
+            }, 1000);
+        })
     }
 
     emitLines() {
