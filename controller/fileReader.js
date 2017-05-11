@@ -27,19 +27,22 @@ module.exports = class File {
         let realPower = Number(dataArray[1]);
         if(realPower >= 70000 && realPower !== this.lastRealPowerValue) {
           this.lastRealPowerValue = realPower;
-          pushMessages('Generator', messages.peak.message, messages.peak.priority);
+          this.socket.emit('peak', 'Generator', messages.peak.message, messages.peak.priority);
+          //pushMessages('Generator', messages.peak.message, messages.peak.priority);
         }
         // ApparentPower log
         let apparentPower = Number(dataArray[2]);
         if(apparentPower <= 5000 && apparentPower !== this.lastApparentPowerValue) {
           this.lastApparentPowerValue = apparentPower;
-          pushMessages('Generator', messages.efficientLow.message, messages.efficientLow.priority);
+          this.socket.emit('efficientLow', 'Generator', messages.efficientLow.message, messages.efficientLow.priority);
+          //pushMessages('Generator', messages.efficientLow.message, messages.efficientLow.priority);
         }
         // Fuel log
         let fuel = Number(dataArray[3]);
         if(fuel <= 20 && fuel !== this.lastFuelRateValue) {
           this.lastFuelRateValue = fuel;
-          pushMessages('Generator', messages.fuelLow.message, messages.fuelLow.priority);
+          this.socket.emit('fuelLow', 'Generator', messages.fuelLow.message, messages.fuelLow.priority);
+          //pushMessages('Generator', messages.fuelLow.message, messages.fuelLow.priority);
         }
     }
 
