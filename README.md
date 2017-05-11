@@ -164,9 +164,11 @@ This is also the default priority if not specified. The receiver won't get the l
 
 ### Screenshots
 Apple Watch:
+
 ![flow-chart](./repo-images/apple-watch-screenshot.PNG)
 
 Apple iPhone 5s:
+
 ![flow-chart](./repo-images/apple-iphone-screenshot.PNG)
 
 
