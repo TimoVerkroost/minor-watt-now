@@ -13,7 +13,7 @@ ___________________________________________________ -->
 Watt now: [Live demo](#)
 
 ## Concept
-The server recieves data from the generators (Watt-Now sensors), the timetable for all the acts and a list with all the energy zones. By using these datasets the server predicts what generators need to be used at what time and for what task.
+The server recieves data from the generators (Watt-Now sensors). This is now simulated from the data files.
 
 When the server predicts a spike in the energy useage. The maintenance crew will get a notification on there phone, that tells them what energy zone needs a bigger/smaller generator or when to turn them off. By doing this the maintenance crew can easyer keep track of the generator and energy usage and the generator usage will go down, what is cheaper for the organisation.
 
@@ -174,6 +174,19 @@ Apple iPhone 5s:
 
 ![flow-chart](./repo-images/apple-iphone-screenshot.PNG)
 
+## Data visiualization
+During this project we worked with real-time data that was measured during an unknown festival. We only got the data, so there was no information about the measuring equipment and generator specification. There was only RAW data so we had to interpret alot by ourselves.
+
+We made data visualizations of the fuel rate, real power apparent power and of the different kind of phases of power that take place in the generator. In the GIF below you are able to see the visualizations on the website.
+
+![Chart.js](./repo-images/watt-now-charts.gif)
+
+### General information 
+The raw data contained 246759 lines of data which was the measurements per second of the generator. Each second a measurement was taken from the 3 phases and the 4th line contained the total of the generator. The average was calculated of each measurement that was taken each second to per minute.
+
+With a BASH script the data was manipulated so we were able to work with it in NODE.js.
+
+Some of the data was SPIKED so we were able to use that for the notifications.
 
 ## Flow
 ![flow-chart](./repo-images/flow-chart.png)
