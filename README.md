@@ -194,7 +194,10 @@ npm install
 
 ### Environment setup (.env file)
 ```
-VAR=VALUE
+PUSHOVER_API_KEY=PushOverAppKEY
+PUSHOVER_USER_KEY=PushOverUserKEY1
+PUSHOVER_USER_KEY_DIEGO=PushOverUserKEY2
+PUSHOVER_USER_KEY_COLIN=PushOverUserKEY3
 ```
 
 ### Build CSS and JS
