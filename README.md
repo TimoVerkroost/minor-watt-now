@@ -127,7 +127,7 @@ The notification that all the users will receive:
 // Send push message to receiers bases on url parameters
 /*
  Parameter description:
- req.params.generator              = generator name
+ req.params.generator                  = generator name
  messages.::MESSAGENAME::.message      = status update description
  messages.::MESSAGENAME::.priority     = priority of message can be (2, 1, 0, -1, -2) where 2 is the highest priority.
 
@@ -223,6 +223,8 @@ npm run watch
 ## Wishlist
 - [ ] Keep track of previeus collected data in a external database, to predict future power usage.
 - [ ] Be able, to add the event planning, to be able, to predict how what power zones need more power at a specific time (when a show with a lot of lights starts).
+- [ ] Safe messages in MongoDB database and edit in front-end. [See branche feat/mongodb](https://github.com/TimoVerkroost/minor-watt-now/tree/feat/mongodb)
+- [ ] Safe user keys from Pushover in MongoDB database and edit in front-end. [See branche feat/mongodb](https://github.com/TimoVerkroost/minor-watt-now/tree/feat/mongodb)
 
 ## Collaborators
 
