@@ -11,8 +11,8 @@ function pushMessages (generator, message, priority){
   const users = [
     // Default user most likely the administrator
     process.env.PUSHOVER_USER_KEY,
-    //process.env.PUSHOVER_USER_KEY_DIEGO,
-    //process.env.PUSHOVER_USER_KEY_COLIN
+    process.env.PUSHOVER_USER_KEY_DIEGO,
+    process.env.PUSHOVER_USER_KEY_COLIN
   ];
   // All supported notification sounds
   const sounds = {
